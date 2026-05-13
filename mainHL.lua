@@ -886,7 +886,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -10, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://10747384394",
+        Image = "rbxassetid://93133335012077",
         AutoButtonColor = false,
         Name = "Close"
     })
@@ -896,7 +896,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -35, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://10734896206",
+        Image = "rbxassetid://93133335012077",
         ImageColor3 = Theme["Color Text"],
         AutoButtonColor = false,
         Name = "Minimize"
@@ -907,7 +907,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -60, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://10734943674",
+        Image = "rbxassetid://93133335012077",
         ImageColor3 = Theme["Color Text"],
         Name = "Search"
     })
@@ -1023,8 +1023,8 @@ function bearlib:MakeWindow(Configs)
     
     function Window:CloseBtn()
         local Dialog = Window:Dialog({
-            Title = "Window",
-            Text = "Đóng window ?",
+            Title = "Script Dragon Hub",
+            Text = "Bạn chắc chắn đóng ?",
             Options = {
                 {"Đóng", function()
                     ScreenGui:Destroy()
