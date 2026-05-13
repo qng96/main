@@ -3186,7 +3186,7 @@ local function CreateNotification(Icon, Title, Message, Duration)
     IconImage.Size = UDim2.new(1, 0, 1, 0)
     IconImage.BackgroundTransparency = 1
     IconImage.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-    IconImage.Image = Icon or "rbxassetid://76571437829227"
+    IconImage.Image = Icon or "rbxassetid://93133335012077"
     IconImage.ImageColor3 = Color3.fromRGB(255, 255, 255)
     IconImage.ScaleType = Enum.ScaleType.Fit
     IconImage.BorderSizePixel = 0
