@@ -121,7 +121,7 @@ local SetProps, SetChildren, InsertTheme, Create do
         end
     end
     
-    pcall(Save, "bear library v8.1.json")
+    pcall(Save, "HLuuVN library v8.1.json")
 end
 
 local Funcs = {} do
@@ -253,7 +253,7 @@ local GetFlag, SetFlag, CheckFlag do
 end
 
 local ScreenGui = Create("ScreenGui", CoreGui, {
-    Name = "bear Library v8.1",
+    Name = "HLuuVN Library v8.1",
 }, {
     Create("UIScale", {
         Scale = UIScale,
@@ -533,7 +533,7 @@ function bearlib:SetTheme(NewTheme)
     if not VerifyTheme(NewTheme) then return end
     
     bearlib.Save.Theme = NewTheme
-    SaveJson("bear library v8.1.json", bearlib.Save)
+    SaveJson("HLuuVN library v8.1.json", bearlib.Save)
     
     local OldTheme = Theme
     Theme = bearlib.Themes[NewTheme]
@@ -654,7 +654,7 @@ local MinimizedIcon = nil
 local MinimizedTitle = nil
 
 function bearlib:MakeWindow(Configs)
-    local WTitle = Configs[1] or Configs.Name or Configs.Title or "bear Library v8.1"
+    local WTitle = Configs[1] or Configs.Name or Configs.Title or "HLuuVN Library v8.1"
     local WMiniText = Configs[2] or Configs.SubTitle or "by : Quang Huy"
     
     Settings.ScriptFile = Configs[3] or Configs.SaveFolder or false
@@ -868,13 +868,13 @@ function bearlib:MakeWindow(Configs)
     ConnectSave(ControlSize1, function()
         if not Minimized then
             bearlib.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
-            SaveJson("bear library v8.1.json", bearlib.Save)
+            SaveJson("HLuuVN library v8.1.json", bearlib.Save)
         end
     end)
     
     ConnectSave(ControlSize2, function()
         bearlib.Save.TabSize = MainScroll.Size.X.Offset
-        SaveJson("bear library v8.1.json", bearlib.Save)
+        SaveJson("HLuuVN library v8.1.json", bearlib.Save)
     end)
     
     local ButtonsFolder = Create("Folder", TopBar, {
@@ -3318,9 +3318,9 @@ local function ProcessNotificationQueue()
 end
 
 function bearlib:Notify(Configs)
-    local Title = Configs.Title or Configs[1] or "Bear Hub"
+    local Title = Configs.Title or Configs[1] or "Dragon Hub"
     local Message = Configs.Message or Configs[2] or Configs.Text or ""
-    local Icon = Configs.Icon or "rbxassetid://76571437829227"
+    local Icon = Configs.Icon or "rbxassetid://93133335012077"
     local Duration = Configs.Duration or Configs.Time or 5
     
     table.insert(NotificationQueue, {
@@ -3527,7 +3527,7 @@ function bearlib:GetToggleColors()
 end
 
 function bearlib:ResetBorderColors()
-    local defaultTheme = self.Themes.QuangHuy
+    local defaultTheme = self.Themes.DragonHub
     self.Themes[self.Save.Theme]["UI Border Color"] = defaultTheme["UI Border Color"]
     self.Themes[self.Save.Theme]["Color Discord Border"] = defaultTheme["Color Discord Border"]
     self.Themes[self.Save.Theme]["Color Profile Border"] = defaultTheme["Color Profile Border"]
@@ -3576,8 +3576,8 @@ end
 task.spawn(function()
     task.wait(2)
     bearlib:Notify({
-        Title = "Bear Library",
-        Message = "UI Bear Library Download Completed",
+        Title = "Dragon Hub",
+        Message = "Đã hoàn tất tải script Dragon Hub",
         Duration = 10
     })
 end)
