@@ -1048,7 +1048,7 @@ function bearlib:MakeWindow(Configs)
             ControlSize2.Visible = true
             Minimized = false
         else
-            MinimizeButton.Image = "rbxassetid://10734924532"
+            MinimizeButton.Image = "rbxassetid://93133335012077"
             SaveSize = MainFrame.Size
             ControlSize1.Visible = false
             ControlSize2.Visible = false
@@ -1498,7 +1498,7 @@ function bearlib:MakeWindow(Configs)
                 Position = UDim2.new(1, -10, 0.5),
                 AnchorPoint = Vector2.new(1, 0.5),
                 BackgroundTransparency = 1,
-                Image = "rbxassetid://10709791437",
+                Image = "rbxassetid://93133335012077",
                 ZIndex = 5
             })
             
