@@ -2600,7 +2600,7 @@ function bearlib:MakeWindow(Configs)
                 local VerifyIcon = Create("ImageLabel", Card, {
                     Size = UDim2.fromOffset(16, 16),
                     Position = UDim2.new(0, 75 + NameLabel.TextBounds.X + 5, 0, 50),
-                    Image = "rbxassetid://10709752907",
+                    Image = "rbxassetid://93133335012077",
                     ImageColor3 = Color3.fromRGB(60, 140, 255),
                     BackgroundTransparency = 1,
                     ZIndex = 4
