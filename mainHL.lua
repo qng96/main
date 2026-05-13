@@ -3031,14 +3031,14 @@ function bearlib:MakeWindow(Configs)
     task.spawn(function()
         task.wait(0.5)
         ToggleGui = Instance.new("ScreenGui")
-        ToggleGui.Name = "BearHub_Toggle_Circle"
+        ToggleGui.Name = "DragonHub_Toggle_Circle"
         ToggleGui.Parent = CoreGui
         
         ToggleButton = Instance.new("ImageButton")
         ToggleButton.Name = "ToggleButton"
         ToggleButton.Size = UDim2.new(0, 50, 0, 50)
         ToggleButton.Position = UDim2.new(0.12, 0, 0.12, 0)
-        ToggleButton.Image = "rbxassetid://108449485047823"
+        ToggleButton.Image = "rbxassetid://93133335012077"
         ToggleButton.BackgroundColor3 = Theme["Color Hub 2"]
         ToggleButton.BackgroundTransparency = 0.2
         ToggleButton.Active = true
