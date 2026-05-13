@@ -2186,7 +2186,7 @@ function bearlib:MakeWindow(Configs)
                 Size = UDim2.new(0, 12, 0, 12),
                 Position = UDim2.new(0, -5, 0.5),
                 AnchorPoint = Vector2.new(1, 0.5),
-                Image = "rbxassetid://15637081879",
+                Image = "rbxassetid://93133335012077",
                 BackgroundTransparency = 1,
                 ZIndex = 5
             })
