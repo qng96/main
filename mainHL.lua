@@ -757,7 +757,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(0, 0, 0.5),
         AnchorPoint = Vector2.new(0, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://93133335012077",
+        Image = "rbxassetid://76571437829227",
         ImageColor3 = Theme["Color Text"],
         Name = "MinimizedIcon"
     })
@@ -886,7 +886,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -10, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://93133335012077",
+        Image = "rbxassetid://10747384394",
         AutoButtonColor = false,
         Name = "Close"
     })
@@ -896,7 +896,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -35, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://93133335012077",
+        Image = "rbxassetid://10734896206",
         ImageColor3 = Theme["Color Text"],
         AutoButtonColor = false,
         Name = "Minimize"
@@ -907,7 +907,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(1, -60, 0.5),
         AnchorPoint = Vector2.new(1, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://93133335012077",
+        Image = "rbxassetid://10734943674",
         ImageColor3 = Theme["Color Text"],
         Name = "Search"
     })
@@ -1024,7 +1024,7 @@ function bearlib:MakeWindow(Configs)
     function Window:CloseBtn()
         local Dialog = Window:Dialog({
             Title = "Script Dragon Hub",
-            Text = "Bạn chắc chắn đóng ?",
+            Text = "Bạn chắc chắn đóng script ?",
             Options = {
                 {"Đóng", function()
                     ScreenGui:Destroy()
@@ -3561,7 +3561,7 @@ function bearlib:ResetBorderColors()
 end
 
 function bearlib:ResetToggleColors()
-    local defaultTheme = self.Themes.QuangHuy
+    local defaultTheme = self.Themes.HLuuVN
     self.Themes[self.Save.Theme]["Color Toggle On"] = defaultTheme["Color Toggle On"]
     self.Themes[self.Save.Theme]["Color Toggle Off"] = defaultTheme["Color Toggle Off"]
     self.Themes[self.Save.Theme]["Color Toggle Knob On"] = defaultTheme["Color Toggle Knob On"]
