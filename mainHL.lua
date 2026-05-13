@@ -1042,7 +1042,7 @@ function bearlib:MakeWindow(Configs)
         WaitClick = true
         
         if Minimized then
-            MinimizeButton.Image = "rbxassetid://10734896206"
+            MinimizeButton.Image = "rbxassetid://93133335012077"
             CreateTween({MainFrame, "Size", SaveSize, 0.25, true})
             ControlSize1.Visible = true
             ControlSize2.Visible = true
