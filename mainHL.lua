@@ -1658,7 +1658,7 @@ function bearlib:MakeWindow(Configs)
                 Size = UDim2.new(0, 15, 0, 15),
                 Position = UDim2.new(0, -5, 0.5),
                 AnchorPoint = Vector2.new(1, 0.5),
-                Image = "rbxassetid://10709791523",
+                Image = "rbxassetid://93133335012077",
                 BackgroundTransparency = 1,
                 ZIndex = 5
             })
@@ -1710,7 +1710,7 @@ function bearlib:MakeWindow(Configs)
                 CreateTween({Arrow, "Rotation", 0, 0.2})
                 CreateTween({DropFrame, "Size", UDim2.new(0, 152, 0, 0), 0.2, true})
                 CreateTween({Arrow, "ImageColor3", Color3.fromRGB(255, 255, 255), 0.2})
-                Arrow.Image = "rbxassetid://10709791523"
+                Arrow.Image = "rbxassetid://93133335012077"
                 NoClickFrame.Visible = false
                 WaitClick = false
             end
