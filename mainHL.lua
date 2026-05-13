@@ -933,7 +933,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(0, 5, 0, 0),
         BackgroundTransparency = 1,
         Font = Enum.Font.Gotham,
-        PlaceholderText = "Search...",
+        PlaceholderText = "Tìm kiếm...",
         TextColor3 = Theme["Color Text"],
         TextSize = 10,
         TextXAlignment = "Left",
