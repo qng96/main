@@ -757,7 +757,7 @@ function bearlib:MakeWindow(Configs)
         Position = UDim2.new(0, 0, 0.5),
         AnchorPoint = Vector2.new(0, 0.5),
         BackgroundTransparency = 1,
-        Image = "rbxassetid://76571437829227",
+        Image = "rbxassetid://93133335012077",
         ImageColor3 = Theme["Color Text"],
         Name = "MinimizedIcon"
     })
