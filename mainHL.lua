@@ -8,9 +8,9 @@ local Players = game:GetService("Players")
 local Player = Players.LocalPlayer
 local PlayerMouse = Player:GetMouse()
 
-local dragonhublib = {
+local bearlib = {
     Themes = {
-        HLuuVN = {
+        QuangHuy = {
             ["Color Hub 1"] = ColorSequence.new({
                 ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)),
                 ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 0, 0)),
@@ -41,7 +41,7 @@ local dragonhublib = {
     Save = {
         UISize = {550, 380},
         TabSize = 160,
-        Theme = "HLuuVN"
+        Theme = "QuangHuy"
     },
     Settings = {},
     Connection = {},
@@ -60,12 +60,12 @@ local dragonhublib = {
 local ViewportSize = workspace.CurrentCamera.ViewportSize
 local UIScale = ViewportSize.Y / 450
 
-local Settings = dragonhublib.Settings
-local Flags = dragonhublib.Flags
+local Settings = bearlib.Settings
+local Flags = bearlib.Flags
 
 local SetProps, SetChildren, InsertTheme, Create do
     InsertTheme = function(Instance, Type)
-        table.insert(dragonhublib.Instances, {
+        table.insert(bearlib.Instances, {
             Instance = Instance,
             Type = Type
         })
@@ -114,9 +114,9 @@ local SetProps, SetChildren, InsertTheme, Create do
             local decode = HttpService:JSONDecode(readfile(file))
             
             if type(decode) == "table" then
-                if rawget(decode, "UISize") then dragonhublib.Save["UISize"] = decode["UISize"] end
-                if rawget(decode, "TabSize") then dragonhublib.Save["TabSize"] = decode["TabSize"] end
-                if rawget(decode, "Theme") and VerifyTheme(decode["Theme"]) then dragonhublib.Save["Theme"] = decode["Theme"] end
+                if rawget(decode, "UISize") then bearlib.Save["UISize"] = decode["UISize"] end
+                if rawget(decode, "TabSize") then bearlib.Save["TabSize"] = decode["TabSize"] end
+                if rawget(decode, "Theme") and VerifyTheme(decode["Theme"]) then bearlib.Save["Theme"] = decode["Theme"] end
             end
         end
     end
@@ -173,7 +173,7 @@ local Funcs = {} do
     end
 end
 
-local Connections, Connection = {}, dragonhublib.Connection do
+local Connections, Connection = {}, bearlib.Connection do
     local function NewConnectionList(List)
         if type(List) ~= "table" then return end
         
@@ -253,7 +253,7 @@ local GetFlag, SetFlag, CheckFlag do
 end
 
 local ScreenGui = Create("ScreenGui", CoreGui, {
-    Name = "Dragon Hub v1",
+    Name = "bear Library v8.1",
 }, {
     Create("UIScale", {
         Scale = UIScale,
@@ -336,7 +336,7 @@ local function MakeDrag(Instance)
 end
 
 local function VerifyTheme(Theme)
-    for name,_ in pairs(dragonhublib.Themes) do
+    for name,_ in pairs(bearlib.Themes) do
         if name == Theme then
             return true
         end
@@ -350,14 +350,14 @@ local function SaveJson(FileName, save)
     end
 end
 
-local Theme = dragonhublib.Themes[dragonhublib.Save.Theme]
+local Theme = bearlib.Themes[bearlib.Save.Theme]
 
 local function AddEle(Name, Func)
-    dragonhublib.Elements[Name] = Func
+    bearlib.Elements[Name] = Func
 end
 
 local function Make(Ele, Instance, props, ...)
-    local Element = dragonhublib.Elements[Ele](Instance, props, ...)
+    local Element = bearlib.Elements[Ele](Instance, props, ...)
     return Element
 end
 
@@ -506,7 +506,7 @@ local function GetColor(Instance)
     return ""
 end
 
-function dragonhublib:GetIcon(index)
+function bearlib:GetIcon(index)
     if type(index) ~= "string" or index:find("rbxassetid://") or #index == 0 then
         return index
     end
@@ -529,24 +529,24 @@ function dragonhublib:GetIcon(index)
     return firstMatch or index
 end
 
-function dragonhublib:SetTheme(NewTheme)
+function bearlib:SetTheme(NewTheme)
     if not VerifyTheme(NewTheme) then return end
     
-    dragonhublib.Save.Theme = NewTheme
-    SaveJson("Dragon Hub v1.json", dragonhublib.Save)
+    bearlib.Save.Theme = NewTheme
+    SaveJson("bear library v8.1.json", bearlib.Save)
     
     local OldTheme = Theme
-    Theme = dragonhublib.Themes[NewTheme]
+    Theme = bearlib.Themes[NewTheme]
     
     if MainFrame then
-        if NewTheme == "HLuuVN" then
+        if NewTheme == "QuangHuy" then
             MainFrame.BackgroundTransparency = 0.03
         end
     end
     
     Connection:FireConnection("ThemeChanged", NewTheme)
     
-    for _, Val in pairs(dragonhublib.Instances) do
+    for _, Val in pairs(bearlib.Instances) do
         if not Val.Instance or not Val.Instance.Parent then continue end
         
         if Val.Type == "Gradient" then
@@ -604,7 +604,7 @@ function dragonhublib:SetTheme(NewTheme)
         MinimizedTitle.TextColor3 = Theme["Color Text"]
     end
     
-    for _, TabData in pairs(dragonhublib.Tabs) do
+    for _, TabData in pairs(bearlib.Tabs) do
         if TabData and TabData.func and TabData.func.Cont then
             local container = TabData.func.Cont
             local tabButton = container and container.Parent
@@ -639,7 +639,7 @@ function dragonhublib:SetTheme(NewTheme)
     print("Theme changed to:", NewTheme)
 end
 
-function dragonhublib:SetScale(NewScale)
+function bearlib:SetScale(NewScale)
     NewScale = ViewportSize.Y / math.clamp(NewScale, 300, 2000)
     UIScale, ScreenGui.Scale.Scale = NewScale, NewScale
 end
@@ -653,9 +653,9 @@ local MinimizedContainer = nil
 local MinimizedIcon = nil
 local MinimizedTitle = nil
 
-function dragonhublib:MakeWindow(Configs)
+function bearlib:MakeWindow(Configs)
     local WTitle = Configs[1] or Configs.Name or Configs.Title or "bear Library v8.1"
-    local WMiniText = Configs[2] or Configs.SubTitle or "by : HLuuVN"
+    local WMiniText = Configs[2] or Configs.SubTitle or "by : Quang Huy"
     
     Settings.ScriptFile = Configs[3] or Configs.SaveFolder or false
     
@@ -675,7 +675,7 @@ function dragonhublib:MakeWindow(Configs)
         end
     end;LoadFile()
     
-    local UISizeX, UISizeY = unpack(dragonhublib.Save.UISize)
+    local UISizeX, UISizeY = unpack(bearlib.Save.UISize)
     
     local bgTransparency = 0.03
     
@@ -777,7 +777,7 @@ function dragonhublib:MakeWindow(Configs)
     }), "Text")
     
     local MainScroll = InsertTheme(Create("ScrollingFrame", Components, {
-        Size = UDim2.new(0, dragonhublib.Save.TabSize, 1, -TopBar.Size.Y.Offset),
+        Size = UDim2.new(0, bearlib.Save.TabSize, 1, -TopBar.Size.Y.Offset),
         ScrollBarImageColor3 = Theme["Color Theme"],
         Position = UDim2.new(0, 0, 1, 0),
         AnchorPoint = Vector2.new(0, 1),
@@ -867,14 +867,14 @@ function dragonhublib:MakeWindow(Configs)
     
     ConnectSave(ControlSize1, function()
         if not Minimized then
-            dragonhublib.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
-            SaveJson("bear library v8.1.json", dragonhublib.Save)
+            bearlib.Save.UISize = {MainFrame.Size.X.Offset, MainFrame.Size.Y.Offset}
+            SaveJson("bear library v8.1.json", bearlib.Save)
         end
     end)
     
     ConnectSave(ControlSize2, function()
-        dragonhublib.Save.TabSize = MainScroll.Size.X.Offset
-        SaveJson("Dragon Hub v1.json", dragonhublib.Save)
+        bearlib.Save.TabSize = MainScroll.Size.X.Offset
+        SaveJson("bear library v8.1.json", bearlib.Save)
     end)
     
     local ButtonsFolder = Create("Folder", TopBar, {
@@ -945,7 +945,7 @@ function dragonhublib:MakeWindow(Configs)
     local function UpdateSearch(Query)
         Query = string.lower(Query)
         
-        for _, ElementData in pairs(dragonhublib.AllElements) do
+        for _, ElementData in pairs(bearlib.AllElements) do
             if ElementData.Instance and ElementData.OriginalParent then
                 if ElementData.Instance.Parent == SearchContainer then
                     ElementData.Instance.Parent = ElementData.OriginalParent
@@ -956,7 +956,7 @@ function dragonhublib:MakeWindow(Configs)
         
         if Query == "" then return end
         
-        for _, ElementData in pairs(dragonhublib.AllElements) do
+        for _, ElementData in pairs(bearlib.AllElements) do
             local Name = string.lower(ElementData.Name)
             local MatchName = string.find(Name, Query)
             
@@ -1023,8 +1023,8 @@ function dragonhublib:MakeWindow(Configs)
     
     function Window:CloseBtn()
         local Dialog = Window:Dialog({
-            Title = "Script Dragon Hub",
-            Text = "Bạn chắc chắn đóng script ?",
+            Title = "Window",
+            Text = "Đóng window ?",
             Options = {
                 {"Đóng", function()
                     ScreenGui:Destroy()
@@ -1226,9 +1226,9 @@ function dragonhublib:MakeWindow(Configs)
     
     function Window:SelectTab(TabSelect)
         if type(TabSelect) == "number" then
-            dragonhublib.Tabs[TabSelect].func:Enable()
+            bearlib.Tabs[TabSelect].func:Enable()
         else
-            for _,Tab in pairs(dragonhublib.Tabs) do
+            for _,Tab in pairs(bearlib.Tabs) do
                 if Tab.Cont == TabSelect.Cont then
                     Tab.func:Enable()
                 end
@@ -1242,7 +1242,7 @@ function dragonhublib:MakeWindow(Configs)
         local TName = Configs[1] or Configs.Title or "Tab!"
         local TIcon = Configs[2] or Configs.Icon or ""
         
-        TIcon = dragonhublib:GetIcon(TIcon)
+        TIcon = bearlib:GetIcon(TIcon)
         if not TIcon:find("rbxassetid://") or TIcon:gsub("rbxassetid://", ""):len() < 6 then
             TIcon = false
         end
@@ -1324,7 +1324,7 @@ function dragonhublib:MakeWindow(Configs)
             end
             Container.Parent = Containers
             Container.Size = UDim2.new(1, 0, 1, 150)
-            table.foreach(dragonhublib.Tabs, function(_,Tab)
+            table.foreach(bearlib.Tabs, function(_,Tab)
                 if Tab.Cont ~= Container then
                     Tab.func:Disable()
                 end
@@ -1339,7 +1339,7 @@ function dragonhublib:MakeWindow(Configs)
         
         FirstTab = true
         local Tab = {}
-        table.insert(dragonhublib.Tabs, {TabInfo = {Name = TName, Icon = TIcon}, func = Tab, Cont = Container})
+        table.insert(bearlib.Tabs, {TabInfo = {Name = TName, Icon = TIcon}, func = Tab, Cont = Container})
         Tab.Cont = Container
         
         local ElementCount = 0
@@ -1399,7 +1399,7 @@ function dragonhublib:MakeWindow(Configs)
                 ZIndex = 2
             })
             
-            table.insert(dragonhublib.Instances, {
+            table.insert(bearlib.Instances, {
                 Instance = UnderlineFrame,
                 Type = "UIBorder"
             })
@@ -1413,12 +1413,12 @@ function dragonhublib:MakeWindow(Configs)
             })
             UnderlineGradient.Parent = UnderlineFrame
             
-            table.insert(dragonhublib.Instances, {
+            table.insert(bearlib.Instances, {
                 Instance = UnderlineGradient,
                 Type = "Gradient"
             })
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = SectionName,
                 Instance = SectionFrame,
                 OriginalParent = Container,
@@ -1428,7 +1428,7 @@ function dragonhublib:MakeWindow(Configs)
             })
             
             local Section = {}
-            table.insert(dragonhublib.Options, {type = "Section", Name = SectionName, func = Section})
+            table.insert(bearlib.Options, {type = "Section", Name = SectionName, func = Section})
             
             function Section:Visible(Bool)
                 if Bool == nil then 
@@ -1458,7 +1458,7 @@ function dragonhublib:MakeWindow(Configs)
             local Frame, LabelFunc = ButtonFrame(Container, PName, PDesc, UDim2.new(1, -20))
             Frame.LayoutOrder = GetOrder()
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = PName,
                 Instance = Frame,
                 OriginalParent = Container,
@@ -1506,7 +1506,7 @@ function dragonhublib:MakeWindow(Configs)
                 Funcs:FireCallback(Callback)
             end)
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = BName,
                 Instance = FButton,
                 OriginalParent = Container,
@@ -1593,7 +1593,7 @@ function dragonhublib:MakeWindow(Configs)
                 SetToggle(not Default)
             end)
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = TName,
                 Instance = Button,
                 OriginalParent = Container,
@@ -1934,7 +1934,7 @@ function dragonhublib:MakeWindow(Configs)
             CalculatePos()
             CalculateSize()
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = DName,
                 Instance = Button,
                 OriginalParent = Container,
@@ -2117,7 +2117,7 @@ function dragonhublib:MakeWindow(Configs)
             
             SliderIcon:GetPropertyChangedSignal("Position"):Connect(UpdateValues) UpdateValues()
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = SName,
                 Instance = Button,
                 OriginalParent = Container,
@@ -2191,7 +2191,7 @@ function dragonhublib:MakeWindow(Configs)
                 ZIndex = 5
             })
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = TName,
                 Instance = Button,
                 OriginalParent = Container,
@@ -2479,7 +2479,7 @@ function dragonhublib:MakeWindow(Configs)
                 }, 2)
             end
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = "Discord Invite Container",
                 Instance = ContainerFrame,
                 OriginalParent = Container,
@@ -2724,7 +2724,7 @@ function dragonhublib:MakeWindow(Configs)
             DescLabel:GetPropertyChangedSignal("Text"):Connect(AdjustDescriptionHeight)
             task.spawn(AdjustDescriptionHeight)
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = Title .. " Discord Card",
                 Instance = CardContainer,
                 OriginalParent = Container,
@@ -2894,7 +2894,7 @@ function dragonhublib:MakeWindow(Configs)
                 TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
             }), "DarkText")
             
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = PName .. " Profile",
                 Instance = ProfileHolder,
                 OriginalParent = Container,
@@ -3010,7 +3010,7 @@ function dragonhublib:MakeWindow(Configs)
                 }) ClickDelay = false
             end)
 
-            table.insert(dragonhublib.AllElements, {
+            table.insert(bearlib.AllElements, {
                 Name = Title,
                 Instance = InviteHolder,
                 OriginalParent = Container,
@@ -3031,7 +3031,7 @@ function dragonhublib:MakeWindow(Configs)
     task.spawn(function()
         task.wait(0.5)
         ToggleGui = Instance.new("ScreenGui")
-        ToggleGui.Name = "DragonHub_Toggle_Circle"
+        ToggleGui.Name = "BearHub_Toggle_Circle"
         ToggleGui.Parent = CoreGui
         
         ToggleButton = Instance.new("ImageButton")
@@ -3216,7 +3216,7 @@ local function CreateNotification(Icon, Title, Message, Duration)
     TitleLabel.TextSize = 15
     TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
     TitleLabel.TextYAlignment = Enum.TextYAlignment.Top
-    TitleLabel.Text = Title or "Dragon Hub"
+    TitleLabel.Text = Title or "Bear Hub"
     TitleLabel.ZIndex = 1003
     TitleLabel.TextStrokeTransparency = 0.3
     TitleLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
@@ -3317,8 +3317,8 @@ local function ProcessNotificationQueue()
     end
 end
 
-function dragonhublib:Notify(Configs)
-    local Title = Configs.Title or Configs[1] or "Dragon Hub"
+function bearlib:Notify(Configs)
+    local Title = Configs.Title or Configs[1] or "Bear Hub"
     local Message = Configs.Message or Configs[2] or Configs.Text or ""
     local Icon = Configs.Icon or "rbxassetid://76571437829227"
     local Duration = Configs.Duration or Configs.Time or 5
@@ -3335,10 +3335,10 @@ function dragonhublib:Notify(Configs)
     return true
 end
 
-function dragonhublib:SetUIBorderColor(color)
+function bearlib:SetUIBorderColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["UI Border Color"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "UIBorder" then
@@ -3354,10 +3354,10 @@ function dragonhublib:SetUIBorderColor(color)
     end
 end
 
-function dragonhublib:SetDiscordBorderColor(color)
+function bearlib:SetDiscordBorderColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Discord Border"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Stroke" then
@@ -3375,10 +3375,10 @@ function dragonhublib:SetDiscordBorderColor(color)
     end
 end
 
-function dragonhublib:SetProfileBorderColor(color)
+function bearlib:SetProfileBorderColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Profile Border"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Stroke" then
@@ -3392,10 +3392,10 @@ function dragonhublib:SetProfileBorderColor(color)
     end
 end
 
-function dragonhublib:SetHubColor(color)
+function bearlib:SetHubColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Hub 2"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Frame" then
@@ -3409,10 +3409,10 @@ function dragonhublib:SetHubColor(color)
     end
 end
 
-function dragonhublib:SetStrokeColor(color)
+function bearlib:SetStrokeColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Stroke"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Stroke" then
@@ -3431,10 +3431,10 @@ function dragonhublib:SetStrokeColor(color)
     end
 end
 
-function dragonhublib:SetTextColor(color)
+function bearlib:SetTextColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Text"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Text" then
@@ -3447,55 +3447,55 @@ function dragonhublib:SetTextColor(color)
     end
 end
 
-function dragonhublib:SetToggleOnColor(color)
+function bearlib:SetToggleOnColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Toggle On"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
         end
     end
 end
 
-function dragonhublib:SetToggleOffColor(color)
+function bearlib:SetToggleOffColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Toggle Off"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
         end
     end
 end
 
-function dragonhublib:SetToggleKnobOnColor(color)
+function bearlib:SetToggleKnobOnColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Toggle Knob On"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
         end
     end
 end
 
-function dragonhublib:SetToggleKnobOffColor(color)
+function bearlib:SetToggleKnobOffColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Toggle Knob Off"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
         end
     end
 end
 
-function dragonhublib:SetToggleBorderColor(color)
+function bearlib:SetToggleBorderColor(color)
     if typeof(color) == "Color3" then
         self.Themes[self.Save.Theme]["Color Toggle Border"] = color
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
         end
     end
 end
 
-function dragonhublib:SetBorderThickness(thickness)
+function bearlib:SetBorderThickness(thickness)
     if type(thickness) == "number" then
         self.Themes[self.Save.Theme]["Border Thickness"] = thickness
-        if self.Save.Theme == dragonhublib.Save.Theme then
+        if self.Save.Theme == bearlib.Save.Theme then
             Theme = self.Themes[self.Save.Theme]
             for _, Val in pairs(self.Instances) do
                 if Val.Type == "Stroke" or Val.Type == "UIBorder" then
@@ -3506,7 +3506,7 @@ function dragonhublib:SetBorderThickness(thickness)
     end
 end
 
-function dragonhublib:GetBorderColors()
+function bearlib:GetBorderColors()
     return {
         UI = Theme["UI Border Color"],
         Discord = Theme["Color Discord Border"],
@@ -3516,7 +3516,7 @@ function dragonhublib:GetBorderColors()
     }
 end
 
-function dragonhublib:GetToggleColors()
+function bearlib:GetToggleColors()
     return {
         ToggleOn = Theme["Color Toggle On"],
         ToggleOff = Theme["Color Toggle Off"],
@@ -3526,7 +3526,7 @@ function dragonhublib:GetToggleColors()
     }
 end
 
-function dragonhublib:ResetBorderColors()
+function bearlib:ResetBorderColors()
     local defaultTheme = self.Themes.QuangHuy
     self.Themes[self.Save.Theme]["UI Border Color"] = defaultTheme["UI Border Color"]
     self.Themes[self.Save.Theme]["Color Discord Border"] = defaultTheme["Color Discord Border"]
@@ -3534,7 +3534,7 @@ function dragonhublib:ResetBorderColors()
     self.Themes[self.Save.Theme]["Color Stroke"] = defaultTheme["Color Stroke"]
     self.Themes[self.Save.Theme]["Border Thickness"] = defaultTheme["Border Thickness"]
     
-    if self.Save.Theme == dragonhublib.Save.Theme then
+    if self.Save.Theme == bearlib.Save.Theme then
         Theme = self.Themes[self.Save.Theme]
         for _, Val in pairs(self.Instances) do
             if Val.Type == "Stroke" then
@@ -3560,7 +3560,7 @@ function dragonhublib:ResetBorderColors()
     end
 end
 
-function dragonhublib:ResetToggleColors()
+function bearlib:ResetToggleColors()
     local defaultTheme = self.Themes.QuangHuy
     self.Themes[self.Save.Theme]["Color Toggle On"] = defaultTheme["Color Toggle On"]
     self.Themes[self.Save.Theme]["Color Toggle Off"] = defaultTheme["Color Toggle Off"]
@@ -3568,18 +3568,18 @@ function dragonhublib:ResetToggleColors()
     self.Themes[self.Save.Theme]["Color Toggle Knob Off"] = defaultTheme["Color Toggle Knob Off"]
     self.Themes[self.Save.Theme]["Color Toggle Border"] = defaultTheme["Color Toggle Border"]
     
-    if self.Save.Theme == dragonhublib.Save.Theme then
+    if self.Save.Theme == bearlib.Save.Theme then
         Theme = self.Themes[self.Save.Theme]
     end
 end
 
 task.spawn(function()
     task.wait(2)
-    dragonhublib:Notify({
-        Title = "Dragon Hub",
-        Message = "Đã hoàn tất tải script Dragon Hub",
+    bearlib:Notify({
+        Title = "Bear Library",
+        Message = "UI Bear Library Download Completed",
         Duration = 10
     })
 end)
 
-return dragonhublib
+return bearlib
